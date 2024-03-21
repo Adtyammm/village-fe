@@ -115,7 +115,7 @@ export function MyReportings() {
   const fetchReportingData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/rep/gReporting/user/${userId}`,
+        `https://kosar-backend.vercel.app/rep/gReporting/user/${userId}`,
         {
           params: {
             userId: userId,

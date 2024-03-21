@@ -14,7 +14,7 @@ useEffect(() => {
   const fetchReportingsByID = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/rep/gReportingByID/${complaint_id}`
+        `https://kosar-backend.vercel.app/rep/gReportingByID/${complaint_id}`
       );
 
       const data = response.data.data;

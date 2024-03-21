@@ -25,7 +25,7 @@ function AdminDashboard() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/rep/gReporting");
+      const response = await axios.get("https://kosar-backend.vercel.app/rep/gReporting");
       const data = response.data.data;
 
       if (Array.isArray(data)) {

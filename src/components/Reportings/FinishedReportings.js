@@ -13,7 +13,7 @@ function FinishedReportings() {
     (async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/rep/gReporting"
+          "https://kosar-backend.vercel.app/rep/gReporting"
         );
         const data = response.data.data;
         setReportings(data);

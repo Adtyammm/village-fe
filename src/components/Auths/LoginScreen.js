@@ -19,7 +19,7 @@ function LoginScreen() {
   async function verifyCode() {
     try {
       const response = await axios.post(
-        "http://localhost:3000/v/sVerification",
+        "https://kosar-backend.vercel.app/v/sVerification",
         { code }
       );
       console.log(response.data);
@@ -44,7 +44,7 @@ function LoginScreen() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/emp/eLogin",
+        "https://kosar-backend.vercel.app/emp/eLogin",
         credentials
       );
       console.log(response.data);

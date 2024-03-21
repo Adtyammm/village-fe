@@ -14,7 +14,7 @@ function AdminUser() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/u/gUsers");
+      const response = await axios.get("https://kosar-backend.vercel.app/u/gUsers");
       setUsers(response.data.data);
     } catch (error) {
       console.log(error);
@@ -33,7 +33,7 @@ function AdminUser() {
    }).then((result) => {
      if (result.isConfirmed) {
        axios
-         .put(`http://localhost:3000/u/uUsers/${id}`, {
+         .put(`https://kosar-backend.vercel.app/u/uUsers/${id}`, {
            account_state: newStatus,
          })
          .then((response) => {
@@ -76,7 +76,7 @@ function AdminUser() {
    }).then((result) => {
      if (result.isConfirmed) {
        axios
-         .put(`http://localhost:3000/u/uUsers/${id}`, {
+         .put(`https://kosar-backend.vercel.app/u/uUsers/${id}`, {
            account_state: newStatus,
          })
          .then((response) => {

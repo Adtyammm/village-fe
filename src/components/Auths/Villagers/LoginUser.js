@@ -19,7 +19,7 @@ function LoginUser() {
     };
 
     try {
-      const response = await axios.post("http://localhost:3000/u/uLogin", credentials);
+      const response = await axios.post("https://kosar-backend.vercel.app/u/uLogin", credentials);
 
       if (response.status === 200) {
         if (response.data.status === "Success" && response.data.code === 200) {
