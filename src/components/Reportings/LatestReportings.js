@@ -12,7 +12,9 @@ function LatestReportings() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("https://kosar-backend.vercel.app/rep/gReporting");
+        const response = await axios.get(
+          "http://localhost:5000/rep/gReporting"
+        );
         const data = response.data.data;
         setReportings(data);
         setDuplicateReportings(data);
@@ -35,7 +37,6 @@ function LatestReportings() {
 
     setReportings(tempreportings);
   }
-
 
   function filterByType(e) {
     setcomplaint_category(e);

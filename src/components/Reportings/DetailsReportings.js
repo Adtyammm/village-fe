@@ -8,33 +8,31 @@ function DetailsReporting({ match }) {
   const [reportings, setReportings] = useState();
   const [showModal, setShowModal] = useState(false);
   const { complaint_id } = useParams();
-  
 
-useEffect(() => {
-  const fetchReportingsByID = async () => {
-    try {
-      const response = await axios.get(
-        `https://kosar-backend.vercel.app/rep/gReportingByID/${complaint_id}`
-      );
+  useEffect(() => {
+    const fetchReportingsByID = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/rep/gReportingByID/${complaint_id}`
+        );
 
-      const data = response.data.data;
-      if (data) {
-        setReportings(data); // Ambil data dari respons
-      } else {
-        console.log("Data tidak ditemukan");
+        const data = response.data.data;
+        if (data) {
+          setReportings(data); // Ambil data dari respons
+        } else {
+          console.log("Data tidak ditemukan");
+        }
+      } catch (err) {
+        console.error(err);
       }
-    } catch (err) {
-      console.error(err);
-    }
+    };
+
+    fetchReportingsByID();
+  }, [complaint_id]);
+
+  const handleModal = () => {
+    setShowModal(!showModal);
   };
-
-  fetchReportingsByID();
-}, [complaint_id]);
-
-const handleModal = () => {
-  setShowModal(!showModal);
-};
-
 
   let statusClass = "";
   let backgroundColor = "";

@@ -24,7 +24,10 @@ function RegisterUser() {
 
     console.log(villagers);
     try {
-      const response = await axios.post("https://kosar-backend.vercel.app/u/cUsers", villagers);
+      const response = await axios.post(
+        "http://localhost:5000/u/cUsers",
+        villagers
+      );
       console.log(response);
       console.log(response.data);
       if (response.status === 200) {

@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Col, Row, Table } from "react-bootstrap";
 
-
 function AdminAllUsers() {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,7 +13,7 @@ function AdminAllUsers() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://kosar-backend.vercel.app/u/gUsers");
+      const response = await axios.get("http://localhost:5000/u/gUsers");
       setUsers(response.data.data);
     } catch (error) {
       console.log(error);

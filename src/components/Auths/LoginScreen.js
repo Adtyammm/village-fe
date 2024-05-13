@@ -19,7 +19,7 @@ function LoginScreen() {
   async function verifyCode() {
     try {
       const response = await axios.post(
-        "https://kosar-backend.vercel.app/v/sVerification",
+        "http://localhost:5000/v/sVerification",
         { code }
       );
       console.log(response.data);
@@ -44,7 +44,7 @@ function LoginScreen() {
 
     try {
       const response = await axios.post(
-        "https://kosar-backend.vercel.app/emp/eLogin",
+        "http://localhost:5000/emp/eLogin",
         credentials
       );
       console.log(response.data);
@@ -107,7 +107,7 @@ function LoginScreen() {
               <Card.Text>
                 <h2 className="login_title">Login Admin</h2>
                 <input
-                  type="text" 
+                  type="text"
                   className="form-control"
                   placeholder="Username"
                   value={username}

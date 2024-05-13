@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ModalReporting from "../Reportings/ModalsReportings";
@@ -14,7 +13,7 @@ function AcceptedReportings() {
     (async () => {
       try {
         const response = await axios.get(
-          "https://kosar-backend.vercel.app/rep/gReporting"
+          "http://localhost:5000/rep/gReporting"
         );
         const data = response.data.data;
         setReportings(data);

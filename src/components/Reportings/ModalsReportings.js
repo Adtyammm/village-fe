@@ -24,9 +24,12 @@ function ModalReporting({ reporting, index }) {
       return;
     }
     axios
-      .put(`https://kosar-backend.vercel.app/rep/vReporting/vote/${reporting.complaint_id}`, {
-        vote: voteCount + 1,
-      })
+      .put(
+        `http://localhost:5000/rep/vReporting/vote/${reporting.complaint_id}`,
+        {
+          vote: voteCount + 1,
+        }
+      )
       .then((response) => {
         setVoteCount(voteCount + 1);
         setHasVoted(true);

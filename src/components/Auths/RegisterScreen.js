@@ -25,7 +25,10 @@ function RegisterScreen() {
     };
 
     try {
-      const response = await axios.post("https://kosar-backend.vercel.app/emp/cEmployee", employee);
+      const response = await axios.post(
+        "http://localhost:5000/emp/cEmployee",
+        employee
+      );
       console.log(response.data);
       if (response.status === 200) {
         Swal.fire("Congrats", "Employee Created Successfully", "success").then(
@@ -52,8 +55,6 @@ function RegisterScreen() {
       password !== ""
     );
   };
-
-  
 
   return (
     <Container className="container">

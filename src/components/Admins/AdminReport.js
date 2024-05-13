@@ -15,7 +15,7 @@ function AdminReport() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://kosar-backend.vercel.app/rep/gReporting");
+      const response = await axios.get("http://localhost:5000/rep/gReporting");
       setReportings(response.data.data);
     } catch (error) {
       console.log(error);
@@ -34,7 +34,7 @@ function AdminReport() {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .put(`https://kosar-backend.vercel.app/rep/uReporting/${id}`, {
+          .put(`http://localhost:5000/rep/uReporting/${id}`, {
             work_status: newStatus,
           })
           .then((response) => {
@@ -76,7 +76,7 @@ function AdminReport() {
       preConfirm: (reason) => {
         return new Promise((resolve) => {
           axios
-            .put(`https://kosar-backend.vercel.app/rep/uReporting/${id}/reason`, {
+            .put(`http://localhost:5000/rep/uReporting/${id}/reason`, {
               work_status: newStatus,
               reason: reason,
             })

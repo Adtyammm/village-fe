@@ -13,7 +13,7 @@ function FinishedReportings() {
     (async () => {
       try {
         const response = await axios.get(
-          "https://kosar-backend.vercel.app/rep/gReporting"
+          "http://localhost:5000/rep/gReporting"
         );
         const data = response.data.data;
         setReportings(data);
@@ -37,7 +37,6 @@ function FinishedReportings() {
 
     setReportings(tempreportings);
   }
-
 
   function filterByType(e) {
     setcomplaint_category(e);
@@ -99,7 +98,7 @@ function FinishedReportings() {
         {reportingsSelesai.length > 0 ? (
           reportingsSelesai.map((reporting, index) => {
             return (
-              <div key={index}  className="modals col-md-9">
+              <div key={index} className="modals col-md-9">
                 <ModalReporting reporting={reporting} index={index} />
               </div>
             );

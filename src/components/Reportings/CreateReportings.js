@@ -59,7 +59,7 @@ function CreateReporting() {
     }
 
     try {
-      const result = await axios.post("https://kosar-backend.vercel.app/rep/cReporting", {
+      const result = await axios.post("http://localhost:5000/rep/cReporting", {
         ...newreporting,
         user_id: userId,
       });
@@ -91,7 +91,9 @@ function CreateReporting() {
             </div>
           </div>
           <div className="subjudul col-md">
-            <h1 className="jdlcreate">Please Submit Your Complaint Directly To Us</h1>
+            <h1 className="jdlcreate">
+              Please Submit Your Complaint Directly To Us
+            </h1>
           </div>
           <div className="tampilanhome row justify-content-around bs m-5">
             {/* // Nama mengikuti pengguna login register */}

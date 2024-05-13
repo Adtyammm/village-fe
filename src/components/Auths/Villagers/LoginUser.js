@@ -19,7 +19,10 @@ function LoginUser() {
     };
 
     try {
-      const response = await axios.post("https://kosar-backend.vercel.app/u/uLogin", credentials);
+      const response = await axios.post(
+        "http://localhost:5000/u/uLogin",
+        credentials
+      );
 
       if (response.status === 200) {
         if (response.data.status === "Success" && response.data.code === 200) {
@@ -60,9 +63,9 @@ function LoginUser() {
         Swal.fire("Oops", "Invalid credentials", "error");
       }
     } catch (error) {
-       console.error("Error during login:", error); // Tambahkan console.log disini
-       Swal.fire("Oops", "Wrong Username and Password", "error");
-       console.log(error);
+      console.error("Error during login:", error); // Tambahkan console.log disini
+      Swal.fire("Oops", "Wrong Username and Password", "error");
+      console.log(error);
     }
   }
 

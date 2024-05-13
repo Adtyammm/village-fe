@@ -14,98 +14,98 @@ function AdminUser() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://kosar-backend.vercel.app/u/gUsers");
+      const response = await axios.get("http://localhost:5000/u/gUsers");
       setUsers(response.data.data);
     } catch (error) {
       console.log(error);
     }
   };
 
- const verifiedUser = (id, newStatus) => {
-   Swal.fire({
-     title: "Are you sure?",
-     text: "You are verifying this user. Proceed?",
-     icon: "warning",
-     showCancelButton: true,
-     confirmButtonText: "Verify",
-     cancelButtonText: "Cancel",
-     reverseButtons: true,
-   }).then((result) => {
-     if (result.isConfirmed) {
-       axios
-         .put(`https://kosar-backend.vercel.app/u/uUsers/${id}`, {
-           account_state: newStatus,
-         })
-         .then((response) => {
-           console.log(response.data);
+  const verifiedUser = (id, newStatus) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You are verifying this user. Proceed?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Verify",
+      cancelButtonText: "Cancel",
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .put(`http://localhost:5000/u/uUsers/${id}`, {
+            account_state: newStatus,
+          })
+          .then((response) => {
+            console.log(response.data);
 
-           const updatedList = users.map((user) => {
-             if (user.user_id === id) {
-               return { ...user, account_state: newStatus };
-             }
-             return user;
-           });
+            const updatedList = users.map((user) => {
+              if (user.user_id === id) {
+                return { ...user, account_state: newStatus };
+              }
+              return user;
+            });
 
-           Swal.fire(
-             "User Verified",
-             "User Verified Successfully",
-             "success"
-           ).then(() => {
-             window.location.reload();
-           });
+            Swal.fire(
+              "User Verified",
+              "User Verified Successfully",
+              "success"
+            ).then(() => {
+              window.location.reload();
+            });
 
-           setUsers(updatedList);
-         })
-         .catch((error) => {
-           console.error(error);
-           Swal.fire("Oops", "Something Went Wrong", "error");
-         });
-     }
-   });
- };
+            setUsers(updatedList);
+          })
+          .catch((error) => {
+            console.error(error);
+            Swal.fire("Oops", "Something Went Wrong", "error");
+          });
+      }
+    });
+  };
 
- const unverifiedUser = (id, newStatus) => {
-   Swal.fire({
-     title: "Are you sure?",
-     text: "You are unverifying this user. Proceed?",
-     icon: "warning",
-     showCancelButton: true,
-     confirmButtonText: "Unverify",
-     cancelButtonText: "Cancel",
-     reverseButtons: true,
-   }).then((result) => {
-     if (result.isConfirmed) {
-       axios
-         .put(`https://kosar-backend.vercel.app/u/uUsers/${id}`, {
-           account_state: newStatus,
-         })
-         .then((response) => {
-           console.log(response.data);
+  const unverifiedUser = (id, newStatus) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You are unverifying this user. Proceed?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Unverify",
+      cancelButtonText: "Cancel",
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .put(`http://localhost:5000/u/uUsers/${id}`, {
+            account_state: newStatus,
+          })
+          .then((response) => {
+            console.log(response.data);
 
-           const updatedList = users.map((user) => {
-             if (user.user_id === id) {
-               return { ...user, account_state: newStatus };
-             }
-             return user;
-           });
+            const updatedList = users.map((user) => {
+              if (user.user_id === id) {
+                return { ...user, account_state: newStatus };
+              }
+              return user;
+            });
 
-           Swal.fire(
-             "User Unverified",
-             "User Unverified Successfully",
-             "success"
-           ).then(() => {
-             window.location.reload();
-           });
+            Swal.fire(
+              "User Unverified",
+              "User Unverified Successfully",
+              "success"
+            ).then(() => {
+              window.location.reload();
+            });
 
-           setUsers(updatedList);
-         })
-         .catch((error) => {
-           console.error(error);
-           Swal.fire("Oops", "Something Went Wrong", "error");
-         });
-     }
-   });
- };
+            setUsers(updatedList);
+          })
+          .catch((error) => {
+            console.error(error);
+            Swal.fire("Oops", "Something Went Wrong", "error");
+          });
+      }
+    });
+  };
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
