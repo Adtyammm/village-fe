@@ -11,7 +11,7 @@ function HomeScreen() {
     <Container className="homes">
       <h1 className="judul">Welcome to</h1>
       <h2 className="judul2">
-        Public Complaint Information System <br></br> Kosar Village
+        Public Complaint Information System <br></br> Sukamaju Village
       </h2>
 
       <Container className="tampilanhome">

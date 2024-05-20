@@ -1,14 +1,14 @@
 import React from "react";
-import logo from "../../assets/subang.png";
+import logo from "../../assets/sukamaju.png";
 
 const ProfileVillageScreen = () => {
   const villageData = {
-    villageName: "Kosar Village",
+    villageName: "Sukamaju Village",
     villageImage: logo,
     villageLocation:
-      "Cipendeuy District, Subang Regency, West Java Province, Indonesia.",
+      "Majalaya District, Bandung City, West Java Province, Indonesia.",
     villageDescription:
-      "Kosar Village is a village located in Cipendeuy District, Subang Regency, West Java Province, Indonesia. Kosar Village is one of 9 Villages in the Cipeundeuy District Area. Kosar Village has a rich history and unique culture. This village is famous for its natural beauty and the friendliness of its people..",
+      "Sukamaju Village is a village located in Majalaya District, Bandung City, West Java Province, Indonesia. Sukamaju Village is one of 9 Villages in the Majalaya District Area. Sukamaju Village has a rich history and unique culture. This village is famous for its natural beauty and the friendliness of its people..",
     villagePopulation: "- 4500 Villagers",
     villageArea: "2.166 km²",
     villageLocationCoords:
@@ -25,7 +25,7 @@ const ProfileVillageScreen = () => {
       "Sports Facilities",
     ],
     villagePotential:
-      "Kosar Village has fertile agricultural potential and is a center for agricultural production in the surrounding area. Apart from that, this village also has tourism potential with beautiful natural scenery.",
+      "Sukamaju Village has fertile agricultural potential and is a center for agricultural production in the surrounding area. Apart from that, this village also has tourism potential with beautiful natural scenery.",
     villageEvents: [
       "Independence Day Celebration",
       "Traditional ceremonies",
@@ -33,7 +33,7 @@ const ProfileVillageScreen = () => {
     ],
     villageOrganizations: ["Karang Taruna", "PKK", "Kelompok Tani"],
     villageContact: {
-      address: "Kosar, Kec. Cipeundeuy, Subang Regency, West Java 41262",
+      address: "Sukamaju, Kec. Majalaya, Bandung Regency, West Java 41262",
       phone: "-",
       email: "-",
       instagram: "-",

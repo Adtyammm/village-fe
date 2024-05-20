@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-import logo from "../../../assets/subang.png";
+import logo from "../../../assets/sukamaju.png";
 
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { IoArrowBackOutline } from "react-icons/io5";
@@ -86,7 +86,7 @@ function LoginUser() {
                 <img className="img-logo" src={logo} alt="" />
                 <h2>Welcome to</h2>
                 <h1>Public Complaint Information System</h1>
-                <h1>Kosar Village</h1>
+                <h1>Sukamaju Village</h1>
               </Card.Title>
               <Card.Text>
                 <h2 className="login_title">Login Villagers</h2>

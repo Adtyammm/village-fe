@@ -102,7 +102,7 @@ function LoginScreen() {
                 <img className="img-logo" src={logo} alt="" />
                 <h2>Welcome to</h2>
                 <h1>Public Complaint Information System</h1>
-                <h1>Kosar Village</h1>
+                <h1>Sukamaju Village</h1>
               </Card.Title>
               <Card.Text>
                 <h2 className="login_title">Login Admin</h2>
