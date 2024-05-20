@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 import { BsArrowRightSquare, BsTriangle, BsTriangleFill } from "react-icons/bs";
 
+import CONFIG from "../Api/config";
+
 function ModalReporting({ reporting, index }) {
   const [voteCount, setVoteCount] = useState(reporting.vote);
 
@@ -25,7 +27,7 @@ function ModalReporting({ reporting, index }) {
     }
     axios
       .put(
-        `http://localhost:5000/rep/vReporting/vote/${reporting.complaint_id}`,
+        `${CONFIG.BASE_URL}/rep/vReporting/vote/${reporting.complaint_id}`,
         {
           vote: voteCount + 1,
         }

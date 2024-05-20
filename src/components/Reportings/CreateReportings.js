@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import CONFIG from "../Api/config";
 
 function CreateReporting() {
   const [showCreateReportContent, setShowCreateReportContent] = useState(false);
@@ -59,7 +60,7 @@ function CreateReporting() {
     }
 
     try {
-      const result = await axios.post("http://localhost:5000/rep/cReporting", {
+      const result = await axios.post(`${CONFIG.BASE_URL}/rep/cReporting`, {
         ...newreporting,
         user_id: userId,
       });

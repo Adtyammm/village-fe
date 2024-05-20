@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Col, Row, Table } from "react-bootstrap";
+import CONFIG from "../Api/config";
 
 function AdminAllUsers() {
   const [users, setUsers] = useState([]);
@@ -13,7 +14,7 @@ function AdminAllUsers() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/u/gUsers");
+      const response = await axios.get(`${CONFIG.BASE_URL}/u/gUsers`);
       setUsers(response.data.data);
     } catch (error) {
       console.log(error);

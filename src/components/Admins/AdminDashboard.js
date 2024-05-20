@@ -3,9 +3,10 @@ import { Chart, LinearScale, registerables } from "chart.js";
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Bar } from "react-chartjs-2";
+import CONFIG from "../Api/config";
 
 function AdminDashboard() {
-  const [reportings, setReportings] = useState([]);
+  const [, setReportings] = useState([]);
   const [totalAmountReportings, setTotalAmountReportings] = useState(0);
   const [totalAmountReportingsAccepted, setTotalAmountReportingsAccepted] =
     useState(0);
@@ -25,7 +26,7 @@ function AdminDashboard() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/rep/gReporting");
+      const response = await axios.get(`${CONFIG.BASE_URL}/rep/gReporting`);
       const data = response.data.data;
 
       if (Array.isArray(data)) {

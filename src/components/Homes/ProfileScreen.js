@@ -2,17 +2,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
-  Button,
-  Card,
-  Col,
-  Container,
-  Modal,
-  Nav,
-  Row,
-  Tab,
+    Button,
+    Card,
+    Col,
+    Container,
+    Modal,
+    Nav,
+    Row,
+    Tab,
 } from "react-bootstrap";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+
+
+import CONFIG from "../Api/config";
 
 function ProfileScreen() {
   const [nik, setNik] = useState("");
@@ -115,7 +118,7 @@ export function MyReportings() {
   const fetchReportingData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/rep/gReporting/user/${userId}`,
+        `${CONFIG.BASE_URL}/rep/gReporting/user/${userId}`,
         {
           params: {
             userId: userId,

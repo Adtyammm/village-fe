@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { Link, useParams } from "react-router-dom";
+import CONFIG from "../Api/config";
 
 function DetailsReporting({ match }) {
   const [reportings, setReportings] = useState();
@@ -13,7 +14,7 @@ function DetailsReporting({ match }) {
     const fetchReportingsByID = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/rep/gReportingByID/${complaint_id}`
+          `${CONFIG.BASE_URL}/rep/gReportingByID/${complaint_id}`
         );
 
         const data = response.data.data;

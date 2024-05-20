@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import logo from "../../../assets/subang.png";
+import CONFIG from "../../Api/config";
 
 function RegisterUser() {
   const [nik, setNIK] = useState("");
@@ -25,7 +26,7 @@ function RegisterUser() {
     console.log(villagers);
     try {
       const response = await axios.post(
-        "http://localhost:5000/u/cUsers",
+        `${CONFIG.BASE_URL}/u/cUsers`,
         villagers
       );
       console.log(response);

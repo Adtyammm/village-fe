@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import CONFIG from "../Api/config";
 import ModalReporting from "../Reportings/ModalsReportings";
 
 function LatestReportings() {
@@ -13,7 +14,7 @@ function LatestReportings() {
     (async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/rep/gReporting"
+          `${CONFIG.BASE_URL}/rep/gReporting`
         );
         const data = response.data.data;
         setReportings(data);

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ModalReporting from "../Reportings/ModalsReportings";
 
+import CONFIG from "../Api/config";
 function FinishedReportings() {
   const [reportings, setReportings] = useState([]);
 
@@ -13,7 +14,7 @@ function FinishedReportings() {
     (async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/rep/gReporting"
+          `${CONFIG.BASE_URL}/rep/gReporting`
         );
         const data = response.data.data;
         setReportings(data);
@@ -56,7 +57,7 @@ function FinishedReportings() {
     (reporting) => reporting.work_status === "Completed"
   );
 
-  const sortedreportings = reportingsSelesai.sort((a, b) => b.vote - a.vote);
+  // const sortedreportings = reportingsSelesai.sort((a, b) => b.vote - a.vote);
 
   return (
     <div className="row justify-content-center">

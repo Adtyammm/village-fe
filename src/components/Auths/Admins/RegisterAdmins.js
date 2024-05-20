@@ -4,9 +4,10 @@ import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import logo from "../../assets/subang.png";
+import logo from "../../../assets/subang.png";
+import CONFIG from "../../Api/config";
 
-function RegisterScreen() {
+function RegisterAdmins() {
   const [name, setName] = useState("");
   const [nip, setNIP] = useState("");
   const [position, setPosition] = useState("");
@@ -26,7 +27,7 @@ function RegisterScreen() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/emp/cEmployee",
+        `${CONFIG.BASE_URL}/emp/cEmployee`,
         employee
       );
       console.log(response.data);
@@ -155,4 +156,4 @@ function RegisterScreen() {
   );
 }
 
-export default RegisterScreen;
+export default RegisterAdmins;

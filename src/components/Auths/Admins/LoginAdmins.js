@@ -5,12 +5,15 @@ import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-import logo from "../../assets/subang.png";
+import logo from "../../../assets/subang.png";
 
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { IoArrowBackOutline } from "react-icons/io5";
 
-function LoginScreen() {
+import CONFIG from "../../Api/config";
+
+
+function LoginAdmins() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [code, setCode] = useState("");
@@ -19,7 +22,7 @@ function LoginScreen() {
   async function verifyCode() {
     try {
       const response = await axios.post(
-        "http://localhost:5000/v/sVerification",
+        `${CONFIG.BASE_URL}/v/sVerification`,
         { code }
       );
       console.log(response.data);
@@ -44,7 +47,7 @@ function LoginScreen() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/emp/eLogin",
+        `${CONFIG.BASE_URL}/emp/eLogin`,
         credentials
       );
       console.log(response.data);
@@ -162,4 +165,4 @@ function LoginScreen() {
   );
 }
 
-export default LoginScreen;
+export default LoginAdmins;
