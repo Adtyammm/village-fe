@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Row, Table } from "react-bootstrap";
 import Swal from "sweetalert2";
+import CONFIG from "../Api/config";
 
 function AdminUser() {
   const [users, setUsers] = useState([]);
@@ -14,7 +15,7 @@ function AdminUser() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/u/gUsers");
+      const response = await axios.get(`${CONFIG.BASE_URL}/u/gUsers`);
       setUsers(response.data.data);
     } catch (error) {
       console.log(error);
@@ -33,7 +34,7 @@ function AdminUser() {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .put(`http://localhost:5000/u/uUsers/${id}`, {
+          .put(`${CONFIG.BASE_URL}/u/uUsers/${id}`, {
             account_state: newStatus,
           })
           .then((response) => {
@@ -76,7 +77,7 @@ function AdminUser() {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .put(`http://localhost:5000/u/uUsers/${id}`, {
+          .put(`${CONFIG.BASE_URL}/u/uUsers/${id}`, {
             account_state: newStatus,
           })
           .then((response) => {
@@ -139,7 +140,7 @@ function AdminUser() {
           <tbody>
             {currentItems.length > 0 ? (
               currentItems.map((user, index) => (
-                <tr key={user.user_id}>
+                <tr key={user._id}>
                   <td>{index + indexOfFirstItem + 1}</td>
                   <td>{user.nik}</td>
                   <td>{user.name}</td>

@@ -1,20 +1,20 @@
 import React from "react";
-import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./index.css";
 
-import NavbarPage from "./components/Navs/NavbarPage";
-import HomeScreen from "./components/Homes/HomeScreen";
-import RegisterScreen from "./components/Auths/RegisterScreen";
-import LoginScreen from "./components/Auths/LoginScreen";
 import AdminPanel from "./components/Admins/AdminPanel";
-import CreateReporting from "./components/Reportings/CreateReportings";
-import DetailsReporting from "./components/Reportings/DetailsReportings";
-import Welcome from "./components/Homes/WelcomeScreen";
-import RegisterUser from "./components/Auths/Villagers/RegisterUser";
+import LoginAdmins from "./components/Auths/Admins/LoginAdmins";
+import RegisterAdmins from "./components/Auths/Admins/RegisterAdmins";
 import LoginUser from "./components/Auths/Villagers/LoginUser";
-import NavbarUser from "./components/Navs/NavbarUser";
+import RegisterUser from "./components/Auths/Villagers/RegisterUser";
+import HomeScreen from "./components/Homes/HomeScreen";
 import ProfileScreen from "./components/Homes/ProfileScreen";
 import ProfileVillageScreen from "./components/Homes/ProfileVillageScreen";
+import Welcome from "./components/Homes/WelcomeScreen";
+import NavbarPage from "./components/Navs/NavbarPage";
+import NavbarUser from "./components/Navs/NavbarUser";
+import CreateReporting from "./components/Reportings/CreateReportings";
+import DetailsReporting from "./components/Reportings/DetailsReportings";
 
 function App() {
   return (
@@ -34,8 +34,8 @@ function App() {
           <Route path="/profilevillage" element={<ProfileVillageScreen />} />
           <Route path="/profile" element={<ProfileScreen />} />
           <Route path="/tambahkeluhan" element={<CreateReporting />} />
-          <Route path="/register" element={<RegisterScreen />} />
-          <Route path="/login" element={<LoginScreen />} />
+          <Route path="/register" element={<RegisterAdmins />} />
+          <Route path="/login" element={<LoginAdmins />} />
           <Route path="/reguser" element={<RegisterUser />} />
           <Route path="/loguser" element={<LoginUser />} />
 

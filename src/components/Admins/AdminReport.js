@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Modal, Row, Table } from "react-bootstrap";
 import Swal from "sweetalert2";
+import CONFIG from "../Api/config";
 
 function AdminReport() {
   const [reportings, setReportings] = useState([]);
@@ -15,7 +16,7 @@ function AdminReport() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/rep/gReporting");
+      const response = await axios.get(`${CONFIG.BASE_URL}/rep/gReporting`);
       setReportings(response.data.data);
     } catch (error) {
       console.log(error);
@@ -34,7 +35,7 @@ function AdminReport() {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .put(`http://localhost:5000/rep/uReporting/${id}`, {
+          .put(`${CONFIG.BASE_URL}/rep/uReporting/${id}`, {
             work_status: newStatus,
           })
           .then((response) => {
@@ -76,7 +77,7 @@ function AdminReport() {
       preConfirm: (reason) => {
         return new Promise((resolve) => {
           axios
-            .put(`http://localhost:5000/rep/uReporting/${id}/reason`, {
+            .put(`${CONFIG.BASE_URL}/rep/uReporting/${id}/reason`, {
               work_status: newStatus,
               reason: reason,
             })

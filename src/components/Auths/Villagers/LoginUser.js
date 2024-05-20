@@ -8,6 +8,8 @@ import logo from "../../../assets/sukamaju.png";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { IoArrowBackOutline } from "react-icons/io5";
 
+import CONFIG from "../../Api/config";
+
 function LoginUser() {
   const [nik, setNik] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +22,7 @@ function LoginUser() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/u/uLogin",
+        `${CONFIG.BASE_URL}/u/uLogin`,
         credentials
       );
 
