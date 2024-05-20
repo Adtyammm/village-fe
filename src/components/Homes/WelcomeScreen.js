@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/subang.png";
+import logo from "../../assets/sukamaju.png";
 import { Link } from "react-router-dom";
 
 const WelcomeScreen = () => {
@@ -11,7 +11,7 @@ const WelcomeScreen = () => {
         </div>
         <h2>Welcome To</h2>
         <h1>Public Complaint Information System</h1>
-        <h1>Kosar Village</h1>
+        <h1>Sukamaju Village</h1>
         <h2 className="msk">Login as</h2>
         <div className="button-container">
           <Link to="/home" className="button">

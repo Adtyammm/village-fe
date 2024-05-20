@@ -5,7 +5,7 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-import logo from "../../../assets/subang.png";
+import logo from "../../../assets/sukamaju.png";
 import CONFIG from "../../Api/config";
 
 function RegisterUser() {
@@ -72,7 +72,7 @@ function RegisterUser() {
                 <img className="img-logo" src={logo} alt="" />
                 <h2>Welcome to</h2>
                 <h1>Public Complaint Information System</h1>
-                <h1>Kosar Village</h1>
+                <h1>Sukamaju Village</h1>
               </Card.Title>
               <Card.Text>
                 <h2>Villagers</h2>
