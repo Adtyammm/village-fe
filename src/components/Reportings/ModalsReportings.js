@@ -1,37 +1,22 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
-
 import { BsArrowRightSquare, BsTriangle, BsTriangleFill } from "react-icons/bs";
-
+import { Link } from "react-router-dom";
 import CONFIG from "../Api/config";
 
 function ModalReporting({ reporting, index }) {
   const [voteCount, setVoteCount] = useState(reporting.vote);
-
   const [hasVoted, setHasVoted] = useState(false);
-
-  useEffect(() => {
-    const hasVotedBefore = sessionStorage.getItem(
-      `voted-${reporting.complaint_id}`
-    );
-    if (hasVotedBefore) {
-      setHasVoted(true);
-    }
-  }, [reporting.complaint_id]);
 
   const handleVote = () => {
     if (hasVoted) {
       return;
     }
     axios
-      .put(
-        `${CONFIG.BASE_URL}/rep/vReporting/vote/${reporting.complaint_id}`,
-        {
-          vote: voteCount + 1,
-        }
-      )
+      .put(`${CONFIG.BASE_URL}/rep/vReporting/vote/${reporting.complaint_id}`, {
+        vote: voteCount + 1,
+      })
       .then((response) => {
         setVoteCount(voteCount + 1);
         setHasVoted(true);
@@ -61,6 +46,21 @@ function ModalReporting({ reporting, index }) {
       break;
   }
 
+  const formattedDate = new Date(reporting.complaint_date).toLocaleDateString();
+  const formattedDates = new Date(reporting.updatedAt).toLocaleDateString();
+
+  const complaintDate = new Date(reporting.complaint_date);
+  const updatedDate = new Date(reporting.updatedAt);
+  const timeDifference = updatedDate - complaintDate;
+
+  const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  const hoursDifference = Math.floor(
+    (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutesDifference = Math.floor(
+    (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+  );
+
   return (
     <div className="row">
       <div className="col">
@@ -78,7 +78,6 @@ function ModalReporting({ reporting, index }) {
               )}
 
               {reporting.complaint_title}
-              {/* Pengaduan {urutan} */}
               <Link to={`/detailkeluhan/${reporting.complaint_id}`}>
                 <button className="btndetail">
                   <BsArrowRightSquare size={30} />
@@ -100,6 +99,22 @@ function ModalReporting({ reporting, index }) {
             >
               {reporting.complainants_name} |{" "}
               <b className={statusClass}>{statusText}</b>
+              <br></br>
+              <span>Laporan dibuat: {formattedDate}</span>
+              <br></br>
+              {/* Hanya tampilkan tanggal selesai jika status bukan "Processed" */}
+              {reporting.work_status !== "Accepted" && (
+                <>
+                  <span>Laporan selesai: {formattedDates}</span>
+                  <br></br>
+                  <span>
+                    Durasi: {daysDifference} hari {hoursDifference} jam{" "}
+                    {minutesDifference} menit
+                  </span>
+                </>
+              )}
+              <br />
+              {/* Tampilkan data sentimen terbaru */}
             </Card.Text>
           </Card.Body>
         </Card>

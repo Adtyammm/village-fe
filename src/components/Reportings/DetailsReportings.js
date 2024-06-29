@@ -1,13 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Modal, Row } from "react-bootstrap";
+import { Button, Col, Container, Modal, Row, Table } from "react-bootstrap";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { Link, useParams } from "react-router-dom";
 import CONFIG from "../Api/config";
 
 function DetailsReporting({ match }) {
   const [reportings, setReportings] = useState();
-  const [showModal, setShowModal] = useState(false);
+  const [showReasonModal, setShowReasonModal] = useState(false);
+  const [showSentimentModal, setShowSentimentModal] = useState(false);
+  const [sentimen, setSentimen] = useState("");
+  const [sentimenSent, setSentimenSent] = useState(false); // State untuk menandakan bahwa sentimen telah dikirim
   const { complaint_id } = useParams();
 
   useEffect(() => {
@@ -19,7 +22,7 @@ function DetailsReporting({ match }) {
 
         const data = response.data.data;
         if (data) {
-          setReportings(data); // Ambil data dari respons
+          setReportings(data);
         } else {
           console.log("Data tidak ditemukan");
         }
@@ -29,10 +32,31 @@ function DetailsReporting({ match }) {
     };
 
     fetchReportingsByID();
-  }, [complaint_id]);
+  }, [complaint_id, sentimenSent]); // Tambahkan sentimenSent ke dalam dependencies untuk fetch ulang data
 
-  const handleModal = () => {
-    setShowModal(!showModal);
+  const handleReasonModal = () => {
+    setShowReasonModal(!showReasonModal);
+  };
+
+  const handleSentimentModal = () => {
+    setShowSentimentModal(!showSentimentModal);
+  };
+
+  const handleSendSentimen = async () => {
+    try {
+      const response = await axios.post(
+        `${CONFIG.BASE_URL}/rep/prediksiSentimen`,
+        {
+          text: sentimen,
+          reportId: complaint_id,
+        }
+      );
+      console.log("Sentimen berhasil dikirim:", response.data);
+      setShowSentimentModal(false);
+      setSentimenSent(true); // Setelah berhasil mengirim, atur sentimenSent menjadi true
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   let statusClass = "";
@@ -63,6 +87,12 @@ function DetailsReporting({ match }) {
         break;
     }
   }
+
+  useEffect(() => {
+    if (sentimenSent) {
+      setSentimenSent(false); // Setelah fetch ulang data, atur sentimenSent kembali ke false
+    }
+  }, [sentimenSent]);
 
   return (
     <Container>
@@ -120,33 +150,101 @@ function DetailsReporting({ match }) {
           <>
             <h1 className="text-center">Details</h1>
             <br></br>
-            <p className="text-center">{reportings.description}</p>
-            {reportings.work_status === "Rejected" && (
-              <>
+            <p className="text-center mb-3">{reportings.description}</p>
+            <div className="text-center">
+              {reportings.work_status === "Rejected" && (
                 <Button
-                  onClick={handleModal}
-                  className="alasanpenolakan w-50 m-auto"
+                  onClick={handleReasonModal}
+                  className="alasanpenolakan w-50 m-auto button-spacing"
                   style={{
                     whiteSpace: "nowrap",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
+                    marginTop: "30px",
                   }}
                 >
                   See Reasons for Rejection
                 </Button>
+              )}
+              <br />
+              <br />
+              <Button
+                onClick={handleSentimentModal}
+                className="sentimen w-10 m-auto button-spacing"
+                style={{
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  marginTop: "30px",
+                }}
+              >
+                Kirim Ulasan
+              </Button>
+            </div>
 
-                <Modal show={showModal} onHide={handleModal}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Reasons for Rejection</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>{reportings.reason}</Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleModal}>
-                      Close
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
-              </>
+            <Modal show={showReasonModal} onHide={handleReasonModal}>
+              <Modal.Header closeButton>
+                <Modal.Title>Reasons for Rejection</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>{reportings.reason}</Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleReasonModal}>
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
+
+            <Modal show={showSentimentModal} onHide={handleSentimentModal}>
+              <Modal.Header closeButton>
+                <Modal.Title>Send Sentimen</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <textarea
+                  rows="4"
+                  className="form-control"
+                  placeholder="Type your sentiment here..."
+                  value={sentimen}
+                  onChange={(e) => setSentimen(e.target.value)}
+                ></textarea>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleSentimentModal}>
+                  Close
+                </Button>
+                <Button variant="primary" onClick={handleSendSentimen}>
+                  Kirim Ulasan
+                </Button>
+              </Modal.Footer>
+            </Modal>
+
+            {reportings.sentiments && reportings.sentiments.length > 0 && (
+              <Table striped bordered hover className="mt-5">
+                <thead>
+                  <tr>
+                    <th>Ulasan</th>
+                    <th>Sentiment Label</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {reportings.sentiments.map((sentiment) => (
+                    <tr key={sentiment._id}>
+                      <td>{sentiment.text}</td>
+                      <td
+                        style={{
+                          color:
+                            sentiment.sentiment_label === "negatif"
+                              ? "red"
+                              : "blue",
+                        }}
+                      >
+                        {sentiment.sentiment_label === "negatif"
+                          ? "Tidak Memuaskan"
+                          : "Memuaskan"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
             )}
           </>
         ) : (

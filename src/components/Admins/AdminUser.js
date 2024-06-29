@@ -136,46 +136,6 @@ function AdminUser() {
               <th>Action</th>
             </tr>
           </thead>
-
-          <tbody>
-            {currentItems.length > 0 ? (
-              currentItems.map((user, index) => (
-                <tr key={user._id}>
-                  <td>{index + indexOfFirstItem + 1}</td>
-                  <td>{user.nik}</td>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td className="pending-status">{user.account_state}</td>
-
-                  <td>
-                    {user.account_state !== "pending" && (
-                      <Button
-                        className="btn_accepted"
-                        onClick={() => verifiedUser(user.user_id, "Verified")}
-                      >
-                        Verified
-                      </Button>
-                    )}
-                    {user.account_state !== "pending" && (
-                      <Button
-                        variant="danger"
-                        className="btn_rejected"
-                        onClick={() =>
-                          unverifiedUser(user.user_id, "Unverified")
-                        }
-                      >
-                        Unverified
-                      </Button>
-                    )}
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="5">No users available.</td>
-              </tr>
-            )}
-          </tbody>
         </Table>
 
         <Pagination
