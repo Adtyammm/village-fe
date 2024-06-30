@@ -148,34 +148,33 @@ function DetailsReporting({ match }) {
       <Row className="tampilanhome row justify-content-around bs m-5">
         {reportings ? (
           <>
-            <h1 className="text-center">Details</h1>
+            <h1 className="text-center mb-3">Details</h1>
             <br></br>
-            <p className="text-center mb-3">{reportings.description}</p>
+            <p className="text-center mb-2">{reportings.description}</p>
             <div className="text-center">
               {reportings.work_status === "Rejected" && (
                 <Button
                   onClick={handleReasonModal}
-                  className="alasanpenolakan w-50 m-auto button-spacing"
+                  className="alasanpenolakan w-50 m-auto"
                   style={{
                     whiteSpace: "nowrap",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
-                    marginTop: "30px",
+                    marginBottom: "10px",
                   }}
                 >
-                  See Reasons for Rejection
+                  Alasan Kenapa Ditolak
                 </Button>
               )}
               <br />
               <br />
               <Button
                 onClick={handleSentimentModal}
-                className="sentimen w-10 m-auto button-spacing"
+                className="sentimen w-10 m-auto"
                 style={{
                   whiteSpace: "nowrap",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
-                  marginTop: "30px",
                 }}
               >
                 Kirim Ulasan
@@ -184,7 +183,7 @@ function DetailsReporting({ match }) {
 
             <Modal show={showReasonModal} onHide={handleReasonModal}>
               <Modal.Header closeButton>
-                <Modal.Title>Reasons for Rejection</Modal.Title>
+                <Modal.Title>Alasan Kenapa Ditolak</Modal.Title>
               </Modal.Header>
               <Modal.Body>{reportings.reason}</Modal.Body>
               <Modal.Footer>
@@ -212,7 +211,7 @@ function DetailsReporting({ match }) {
                   Close
                 </Button>
                 <Button variant="primary" onClick={handleSendSentimen}>
-                  Kirim Ulasan
+                  Send Sentimen
                 </Button>
               </Modal.Footer>
             </Modal>
